@@ -100,8 +100,30 @@
 ##   discard myProc(1, "2", 3.0)
 ##
 ## When you compile ``testDocstrings.nim``, the docstrings will be extracted
-## and printed to the console at compile-time (in the middle of the compiler
-## output).
+## and printed to the console at compile-time (in the midst of the compiler
+## output).  The output will look like this:
+##
+## ::
+##   Extracted docstrings:
+##   | This is a Python-style docstring!
+##   |
+##   | It doesn't do anything by itself, but it can be extracted by pragmas like
+##   | the ``extractdocstrings`` pragma, enabling non-compiler/non-docgen code
+##   | to extract and process the text content of the docstring at compile-time.
+##   |
+##   | This is another Python-style docstring in the same proc.
+##   | There can be any number of docstrings amongst the top-level statements
+##   | of a proc.  But why would you want multiple docstrings in your proc?
+##   |
+##   | Maybe you don't want a big slab of documentation right between your
+##   | function prototype and your function body, pushing the body way down
+##   | from the parameters in the prototype.  Maybe you want to document your
+##   | algorithm step-by-step, integrated with the code.
+##   |
+##   | The ``extractdocstrings`` pragma (or better yet, your own
+##   | custom pragma that invokes the ``extractAnyDocstrings`` proc, which is
+##   | defined in the ``docstrings`` module) will extract all docstrings.
+##   CC: testDocstrings
 
 
 import macros  # expectKind, kind

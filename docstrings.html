@@ -74,12 +74,12 @@ body {
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
-    width: 100%;
+    width: 85%;
     padding: 0; } }
 /* For devices larger than 650px */
 @media (min-width: 650px) {
   .container {
-    width: 100%; }
+    width: 80%; }
 
   .column,
   .columns {
@@ -392,7 +392,7 @@ h6 {
 ul,
 ol {
   padding: 0;
-  margin: 0 0 0px 15px; }
+  margin: 0 0 10px 25px; }
 
 ul ul,
 ul ol,
@@ -485,16 +485,15 @@ code {
   border: 1px solid #777777; }
 
 pre {
-  display: inline-block;
-  box-sizing: border-box;
-  min-width: calc(100% - 19.5px);
+  display: block;
   padding: 9.5px;
-  margin: 0 10px 0px 10px;
+  margin: 0 10px 10px 10px;
   font-size: 14px;
   line-height: 20px;
   white-space: pre !important;
   overflow-y: hidden;
-  overflow-x: visible;
+  overflow: visible;
+  overflow-x: auto;
   background-color: whitesmoke;
   border: 1px solid #cccccc;
   -webkit-border-radius: 4px;
@@ -508,7 +507,7 @@ pre code {
   padding: 0;
   color: inherit;
   white-space: pre;
-  overflow-x: visible;
+  overflow-x: scroll;
   background-color: transparent;
   border: 0; }
 
@@ -1234,7 +1233,27 @@ dt pre > span.Operator ~ span.Identifier, dt pre > span.Operator ~ span.Operator
     
     <span class="Keyword">return</span> <span class="Identifier">int</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Operator">.</span><span class="Identifier">float64</span> <span class="Operator">+</span> <span class="Identifier">z</span><span class="Punctuation">)</span>
 
-<span class="Keyword">discard</span> <span class="Identifier">myProc</span><span class="Punctuation">(</span><span class="DecNumber">1</span><span class="Punctuation">,</span> <span class="StringLit">&quot;2&quot;</span><span class="Punctuation">,</span> <span class="FloatNumber">3.0</span><span class="Punctuation">)</span></pre><p>When you compile <tt class="docutils literal"><span class="pre">testDocstrings.nim</span></tt>, the docstrings will be extracted and printed to the console at compile-time (in the middle of the compiler output).</p>
+<span class="Keyword">discard</span> <span class="Identifier">myProc</span><span class="Punctuation">(</span><span class="DecNumber">1</span><span class="Punctuation">,</span> <span class="StringLit">&quot;2&quot;</span><span class="Punctuation">,</span> <span class="FloatNumber">3.0</span><span class="Punctuation">)</span></pre><p>When you compile <tt class="docutils literal"><span class="pre">testDocstrings.nim</span></tt>, the docstrings will be extracted and printed to the console at compile-time (in the midst of the compiler output).  The output will look like this:</p>
+<pre>Extracted docstrings:
+| This is a Python-style docstring!
+|
+| It doesn't do anything by itself, but it can be extracted by pragmas like
+| the ``extractdocstrings`` pragma, enabling non-compiler/non-docgen code
+| to extract and process the text content of the docstring at compile-time.
+|
+| This is another Python-style docstring in the same proc.
+| There can be any number of docstrings amongst the top-level statements
+| of a proc.  But why would you want multiple docstrings in your proc?
+|
+| Maybe you don't want a big slab of documentation right between your
+| function prototype and your function body, pushing the body way down
+| from the parameters in the prototype.  Maybe you want to document your
+| algorithm step-by-step, integrated with the code.
+|
+| The ``extractdocstrings`` pragma (or better yet, your own
+| custom pragma that invokes the ``extractAnyDocstrings`` proc, which is
+| defined in the ``docstrings`` module) will extract all docstrings.
+CC: testDocstrings</pre>
 </p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
@@ -1291,11 +1310,10 @@ Annotate this macro as a pragma on your proc that contains docstrings, for examp
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small>Made with Nim. Generated: 2015-01-28 18:52:34 UTC</small>
+        <small>Made with Nim. Generated: 2015-01-28 23:01:05 UTC</small>
       </div>
     </div>
   </div>
 </div>
-
 </body>
 </html>
