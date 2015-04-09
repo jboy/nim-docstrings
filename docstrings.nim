@@ -170,7 +170,7 @@ proc getDocstringStrLitNode(n: NimNode): NimNode {. compileTime .} =
   if n.kind == nnkCallStrLit:
     if n.len == 2:
       let call_ident = n[0]
-      if (call_ident.kind == nnkSym and $call_ident == "docstring"):
+      if (call_ident.kind == nnkIdent and $call_ident == "docstring"):
         let arg_kind = n[1].kind
         if (arg_kind == nnkTripleStrLit or arg_kind == nnkRStrLit):
           return n[1]
